@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+
+    <link rel="stylesheet" href="05contacts.css">
+    <!-- ///Sidebar und Header script /// -->
+
+    <script src="./assets/templates/templatesScript.js"></script>
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="fonts.css">
+
+
+
+</head>
+
+<body onload="includeHTML(); initContactSite()">
+    <!-- //Preventing Site Access without login -->
+    <script>
+        let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
+        if (!userLoginJsonTest || userLoginJsonTest.findIndex(u => u.loggedIn == true) == -1) {
+            // If not authenticated, redirect to login page
+            window.location.href = '07logIn.html';
+        }
+    </script>
+
+
+
+    <div w3-include-html="./assets/templates/headerSidebar.html"></div>
+    <section class="contactsSection">
+        <div id="addContactsMain" class="addContactsMain">
+
+
+            <!-- ////DELETE SUCCESS MESSAGE HERE -->
+            <div class="deleteSuccessMessageClass" id="deleteSuccessContainerId"></div>
+            <div class="successMessageClass d-none" id="createSuccessContainerId">
+                <h3 class="contactCreatedText">Contact created successfully!</h3>
+                <div class="loader"></div>
+            </div>
+            <div class="errorMessageClass d-none" id="emailErrorContainerId">
+                <h3 style="color: red;">This email address already exists, please use a different email address.</h3>
+                <div class="loader"></div>
+            </div>
+
+
+            <div class="addContactsBtn">
+                <button onclick="addContacts()" class="addContacts"><img src="./img/personAdd.png"
+                        alt="Contact add image">Add new contact</button>
+            </div>
+            <div id="contactsContent" class="contactsContent"></div>
+        </div>
+        <div id="showContactsText" class="showContactsText">
+            <div class="showContactsTextMain">
+                <div class="backArrowContainer">
+                    <img onclick="backStep()" class="backArrow" src="./img/Vector.png" alt="Back Arrow">
+                </div>
+                <h2>Contacts</h2>
+                <div class="contactsSeperatorContainer">
+                    <div class="seperator"></div>
+                    <span class="contactsText">Better with a team</span>
+                </div>
+            </div>
+            <div id="showContactsInfo" class="contactsInfo"></div>
+        </div>
+    </section>
+    <div id="popUpContent" class="popUp d-none">
+        <div class="formContent">
+            <div class="leftSide">
+                <button onclick="hideContacts()" id="closePopUp" class="closePopUpTop d-none">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_71720_5528" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4"
+                            width="24" height="24">
+                            <rect x="4" y="4" width="24" height="24" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_71720_5528)">
+                            <path
+                                d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"
+                                fill="#2A3647" />
+                        </g>
+                    </svg></button>
+                <img class="profileImg" src="./img/logoPopUp.png" alt="JOIN Logo" width="60px" height="70px">
+                <div class="popUpText">
+                    <div class="h1Main">
+                        <h1>Add contact</h1>
+                    </div>
+                    <span>Tasks are better with a team!</span>
+                </div>
+            </div>
+            <div class="rightSide">
+                <div class="formDetails">
+                    <span class="nameShortScript" id="editUserCircleId"></span>
+                    <div class="formButtonContainer" id="editOrAddContactContainerId">
+
+                        <!-- Success edit message container -->
+                        <div class="editSuccessMessageClass">
+                            <h3>Edit successful</h3>
+                            <div class="loader"></div>
+
+                        </div>
+
+
+
+                        <button onclick="hideContacts()" id="closePopUp" class="closePopUp"><svg width="32" height="32"
+                                viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <mask id="mask0_71720_5528" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4"
+                                    y="4" width="24" height="24">
+                                    <rect x="4" y="4" width="24" height="24" fill="#D9D9D9" />
+                                </mask>
+                                <g mask="url(#mask0_71720_5528)">
+                                    <path
+                                        d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6834 22.575 10.4 22.575C10.1167 22.575 9.88338 22.4834 9.70005 22.3C9.51672 22.1167 9.42505 21.8834 9.42505 21.6C9.42505 21.3167 9.51672 21.0834 9.70005 20.9L14.6 16L9.70005 11.1C9.51672 10.9167 9.42505 10.6834 9.42505 10.4C9.42505 10.1167 9.51672 9.88338 9.70005 9.70005C9.88338 9.51672 10.1167 9.42505 10.4 9.42505C10.6834 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0834 9.51672 21.3167 9.42505 21.6 9.42505C21.8834 9.42505 22.1167 9.51672 22.3 9.70005C22.4834 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4834 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4834 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4834 22.1167 22.3 22.3C22.1167 22.4834 21.8834 22.575 21.6 22.575C21.3167 22.575 21.0834 22.4834 20.9 22.3L16 17.4Z"
+                                        fill="#2A3647" />
+                                </g>
+                            </svg></button>
+                        <form onsubmit="createContact(event)">
+
+
+                            <input id="name" name="name" type="text" placeholder="First and last name" required
+                                pattern="^[A-Za-z]+(\s[A-Za-z]+)+$" title="Please enter both first and last name.">
+                            <input id="email" name="email" type="email" placeholder="Email" required
+                                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
+                            <input id="phone" name="phone" type="tel" placeholder="Phone"
+                                pattern="^(\+?\d{1,2}\s?)?[0-9\s\+\(\)]*$" inputmode="numeric">
+                            <div class="buttonContent">
+                                <button onclick="contactsWindowsCancel(event)" id="addContactCancel"
+                                    class="addContactCancel"><svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24">
+                                        <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>Cancel</button>
+                                <button id="createContactId" type="submit" class="createContact"><img
+                                        src="./img/check.png">Create
+                                    contact</button>
+                                <button onclick="event.preventDefault()" class="editDeleteContact d-none"
+                                    id="deleteButtonInEditModeId">Delete</button>
+                                <button onclick="saveEditedContact(currentIndex); return false;" id="saveContact"
+                                    type="submit" class="saveContact"><img src="./img/check.png">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/01script.js"></script>
+    <script src="./js/05contactsScript.js"></script>
+
+</body>
+
+</html>

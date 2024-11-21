@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="icon" type="image/x-icon" href="./assets/img/joinMiniLogo.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="03board.css">
+    <script src="./assets/templates/templatesScript.js"></script>
+   <script src="./js/03boardScript.js"></script>
+   <script src="./js/01script.js"></script>
+   <script src="./js/04addTaskScript.js"></script>
+
+    <link rel="stylesheet" href="./assets/templates/headerSidebar.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="03boardResponse.css">
+    <link rel="stylesheet" href="./04addTaskStyle.css">
+
+
+</head>
+<body onload="includeHTML(), initializeBoard()">
+   <script>
+      let userLoginJsonTest = JSON.parse(localStorage.getItem('userLoginJson'));
+      if (!userLoginJsonTest || userLoginJsonTest.findIndex(u => u.loggedIn==true) == -1 ) {
+          // If not authenticated, redirect to login page
+          window.location.href = '07logIn.html';
+      }
+      </script>
+
+<!-- HIER ROMANS EDIT START  -->
+<div class="addEmptyTaskMainOverlayClass" id="addEmptyTaskMainOverlayId" onclick="handleOverlayClick(event)">
+
+   <div class="addEmptyTaskChildOverlayClass" id="addEmptyTaskChildOverlayId" ></div>
+   <!-- onclick="event.stopPropagation()" -->
+</div>
+<!-- HIER ROMANS EDIT END -->
+
+
+<!-- LARGECARD OVERLAY START  -->
+
+<div class="mainContainerOverlay" id="mainLargeCardOverlayId" style="display: none;" onclick="handleLargeCardOverlayClick(event)">
+   <div class="popupMainDiv" id="popupMainDivId">
+   </div>
+</div>
+
+<!-- LARGECARD OVERLAY END -->
+
+ 
+<!-- ///Header und Sidebar Div bei jeder HTML Datei hinzufügen, dazu auch im body: onload="includeHTML()" /// -->
+<div w3-include-html="./assets/templates/headerSidebar.html"></div>
+    <main class="mainDivContainer">
+        <div class="mainDiv">
+           
+         
+    
+            <div class="contentDiv">
+               <div class="headDiv">
+                  <div class="mediaQuerryBoardAdd">
+                   <img id="boardImg" src="./assets/img/Frame 40.svg" alt="">
+                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="openEmptyAddTaskOverlay('To do')">
+                     <rect width="40" height="40" rx="10" fill="#2A3647"/>
+                     <path d="M20 10V30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                     <path d="M30 20L10.0005 20.138" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                     </svg>
+                  </div>
+                     
+                   <div class="inputAddTask">
+                  <div class="containerInputField">
+                    
+                     <input placeholder="Find task or person" required class="inputField" id="findTaskInputId" oninput="findTask()">
+                     <div class="findTaskInputSeperatorAndLensDiv">
+                        <div class="seperator"></div>
+                        <img src="./assets/img/search.svg" alt="">
+                     </div>
+                     
+                  </div>
+                   <!-- <input id="findTask" placeholder="Find Task"> -->
+                   <button onclick="openEmptyAddTaskOverlay('To do')" class="addTaskButtonClass"><img src="./assets/img/add.svg"
+                     alt="Contact add image">Add Task</button>
+                  </div>
+      
+               </div>
+                   <!-- HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH -->
+                    <div class="mainTwoContainerCardsDiv">
+
+                     <div class="cardsDiv">
+                        <div class="containerDivCards1">
+                                          <div id="toDoAreaId">
+                                             <div class="titel">
+                                                <div class="addLine"><span>To Do</span>
+                                                   <svg onclick="openEmptyAddTaskOverlay('To do')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                      <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                      <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                      </svg>
+                                             </div>
+                                          </div>
+
+                                          <div id="toDoStatusDivId" class="mainCardContainerDivClass drag-area"
+                                          ondrop="moveTo('To do')" 
+                                          ondragleave="handleDragLeave(event, 'toDoStatusDivId')" 
+                                          ondragover="allowDrop(event); highlight('toDoStatusDivId')"
+
+                                          >
+                                       </div>
+
+                                             </div>
+                                         </div>
+                                            
+                                            
+                                         <div id="inProgressAreaId">
+                                          <div class="titel">
+                                             <div class="addLine"><span>In Progress</span>
+                                                <svg onclick="openEmptyAddTaskOverlay('In progress')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                   <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                   <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                   <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                   </svg>
+                                          </div>
+                                       </div>
+                                        
+                        <div id="inProgressStatusDivId" class="mainCardContainerDivClass drag-area"
+                            ondrop="moveTo('In progress')" 
+                            ondragleave="handleDragLeave(event, 'inProgressStatusDivId')" 
+                            ondragover="allowDrop(event); highlight('inProgressStatusDivId')"
+                            >
+                        </div>
+                        
+                        
+                        
+                                          </div>
+                                      </div>
+                        
+                        
+                                     
+                                       <div class="containerDivCards2">      
+                                          <div id="awaitFeedbackAreaId">
+                                              <div class="titel">
+                                                 <div class="addLine"><span>Await Feedback</span>
+                                                    <svg onclick="openEmptyAddTaskOverlay('Await feedback')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                       <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                       <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                       <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                       </svg>
+                                              </div>
+                                           </div>
+                                        
+                        <div id="awaitFeedbackStatusDivId" class="mainCardContainerDivClass drag-area"
+                          ondrop="moveTo('Await feedback')" 
+                          ondragleave="handleDragLeave(event, 'awaitFeedbackStatusDivId')" 
+                          ondragover="allowDrop(event); highlight('awaitFeedbackStatusDivId')"
+                          >
+                        </div>
+                                                  <!-- ID im Drag and Drop MiniProjekt: id="awaitFeedbackDivId" -->
+                                                 <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+                        
+                                              </div>
+                        
+                                              <div id="doneAreaId">
+                                                <div class="titel">
+                                                   <div class="addLine"><span>Done</span>
+                                                      <svg onclick="openEmptyAddTaskOverlay('Done')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                         <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+                                                         <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                         <path d="M16 12.5754L8 12.5754" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+                                                         </svg>
+                                                </div>
+                                             </div>
+                                                
+                                    
+                             <div id="doneStatusDivId" class="mainCardContainerDivClass drag-area"
+                               ondrop="moveTo('Done')" 
+                               ondragleave="handleDragLeave(event, 'doneStatusDivId')" 
+                               ondragover="allowDrop(event); highlight('doneStatusDivId')"
+                               >
+                             </div>
+                             
+                                                   <!-- ID im Drag and Drop MiniProjekt: id="isDoneDivId" -->
+                                                      <!-- HIER WERDEN ALLE OBJEKTE AUS DEM TODOJSON DYNAMISCH EINGEFÜGT, ABER NUR WENN SIE DIE KATEGORIE "Await feedback" -->
+                             
+                                             </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                                          </div>
+                        
+
+                    </div>
+                
+                  <!-- HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH -->
+                  
+            </div>
+            </div>  
+            
+            
+
+            
+                 </div>
+               </div> 
+
+                </div>
+
+                
+            </div>
+         
+        </div>
+    </main>
+</body>
+</html>

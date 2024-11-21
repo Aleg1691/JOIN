@@ -1,0 +1,653 @@
+body {
+  margin: 0;
+  font-family: "Inter";
+  background-color: #f6f7f8;
+}
+.mainDivContainer {
+  margin: 128px 0px 0px 232px;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#findTask {
+  border-radius: 10px;
+  padding: 12px;
+  border-style: solid;
+  border-color: #29abe2;
+}
+
+.cardsDiv img:hover {
+  cursor: pointer;
+}
+
+.contentDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cardsDiv {
+  display: flex;
+
+  margin-top: 16px;
+}
+
+#addTask:hover {
+  cursor: pointer;
+}
+.addLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 20px;
+  font-weight: 800;
+  margin: 8px 8px 16px 8px;
+
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+}
+
+.mainSingleCardDivClass {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 0;
+  background-color: white;
+  box-shadow: 6px 5px 5px rgb(212, 209, 209);
+  margin-top: 12px;
+  width: 240px;
+  cursor: pointer;
+}
+
+.mainCardContainerDivClass {
+  margin: 4px;
+}
+
+#cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-style: solid;
+  border-radius: 12px;
+  border-width: 0;
+  background-color: white;
+  box-shadow: 6px 5px 5px rgb(212, 209, 209);
+  margin-top: 24px;
+}
+
+.cardHeadlineClass {
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 112px;
+  padding: 4px 8px 4px 8px;
+  border-radius: 6px;
+  margin: 16px 16px 4px 16px;
+}
+.technicalTaskClass {
+  background-color: #1fd7c1;
+}
+.userStoryClass {
+  background-color: blue;
+}
+
+.contactPrioDiv {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 12px 12px 12px;
+}
+.contactPrioDiv img {
+  position: relative;
+  top: 2px;
+}
+
+.descriptionDivClass {
+  margin: 16px 16px 16px 16px;
+  font-weight: normal;
+  color: #808080;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.descriptionDivClass2 {
+  font-weight: normal;
+  color: #808080;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.cartContainerInnert {
+  margin-left: 16px;
+  height: 100vh;
+}
+.containerformularDivClass {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: bold;
+  margin: 16px 16px 4px 16px;
+}
+
+.singleCardAssignedContactsParentDivClass {
+  display: flex;
+}
+
+.singleCardCircleDivClass {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgb(255, 255, 255);
+  z-index: 3;
+  margin-right: -14px;
+  color: white;
+}
+
+.headerAndContentParentDivClass {
+  display: flex;
+  flex-direction: column;
+}
+
+.findTaskInputSeperatorAndLensDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.accept-field {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background-image: url(./assets/img/search.svg);
+  cursor: pointer;
+  display: inline-block;
+  appearance: none;
+  margin: 0;
+}
+.addTask {
+  font-family: "Inter";
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #2a3647;
+  height: 48px;
+  width: 160px;
+  border-radius: 10px;
+  border: 1px solid #2a3647;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-left: 24px;
+}
+
+.addTaskButtonClass {
+  font-family: "Inter";
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #2a3647;
+  height: 48px;
+  min-width: 140px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 700;
+  margin-left: 24px;
+}
+.addTaskButtonClass:hover {
+  background-color: #29abe2;
+}
+
+.addTask:hover {
+  background-color: #29abe2;
+  border: none;
+  box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.2);
+}
+.titel svg:hover rect {
+  stroke: #29abe2;
+}
+.titel svg:hover path {
+  stroke: #29abe2;
+}
+.titel svg:hover {
+  cursor: pointer;
+}
+.inputAddTask {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0px 0px 0px;
+}
+
+.containerInputField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 312px;
+  height: 46px;
+  padding: 0px 20px 0px 20px;
+  border: 1px solid #146cdfd0;
+  border-radius: 10px;
+}
+
+.inputField {
+  background-color: none;
+  font-size: 20px;
+  border: none;
+  background: none;
+  border-style: none;
+  outline: none;
+}
+
+.seperator {
+  background-color: #d1d1d1;
+  width: 1px;
+  height: 31px;
+}
+.containerDivCards1 {
+  display: flex;
+}
+
+.containerDivCards2 {
+  display: flex;
+}
+
+.mediaQuerryBoardAdd svg {
+  display: none;
+}
+
+/* ROMANS EDIT START  */
+
+.addEmptyTaskMainOverlayClass {
+  z-index: 1001;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(104, 104, 104, 0.432);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addEmptyTaskChildOverlayClass {
+  max-width: 1200px;
+  margin: 48px 0px 64px 0px;
+  width: 90%;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  overflow-y: auto;
+}
+
+/* ////////////////SLIDE IN ADD TASK */
+/* Initial state: Div is hidden off-screen to the right */
+#addEmptyTaskChildOverlayId {
+  position: relative;
+  right: -100%; /* Hide off the screen */
+  transition: right 500ms ease-in-out; /* Animate the right property */
+}
+
+/* When the active class is added, slide the div into view */
+#addEmptyTaskChildOverlayId.active {
+  right: 0; /* Slide in from the right */
+}
+
+/* ///////////////////////////TRYING NEW */
+
+#addEmptyTaskMainOverlayId {
+  display: none;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+/* Child overlay: Start off-screen */
+#addEmptyTaskChildOverlayId {
+  position: relative;
+  right: -100%; /* Hide off the screen */
+  transition: right 300ms ease-in-out, opacity 200ms ease-in-out;
+  opacity: 0; /* Ensure opacity is also 0 initially */
+}
+
+/* When the active class is added, slide into view */
+#addEmptyTaskChildOverlayId.active {
+  right: 0; /* Slide in from the right */
+  opacity: 1; /* Fade in */
+}
+
+/* /////////////////MEDIA QUERY */
+@media screen and (max-width: 905px) {
+  .addEmptyTaskChildOverlayClass {
+    height: 85%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .addEmptyTaskChildOverlayClass {
+    width: 100%;
+  }
+
+  .addEmptyTaskChildOverlayClass
+    .addTaskMainTemplateDivClass
+    .rightSideChildDivClass
+    .prioButtonDivClass {
+    gap: 2px;
+  }
+}
+
+/* ROMANS EDIT ENDE */
+
+/* DRAG AND DROP START */
+
+.drag-area {
+  min-height: 60px;
+  min-width: 240px;
+
+  border-radius: 16px;
+  padding: 0px 16px 24px 16px;
+  border: 1px solid rgba(148, 148, 148, 0.522);
+  background-color: #f2f2f2;
+}
+
+.emptyDragareaClass {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #b6b6b6;
+  position: relative;
+  top: 12px;
+}
+
+.drag-area-highlight {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* DRAG AND DROP END */
+
+/* LARGE CARD OVERLAY CSS  */
+.mainContainerOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #42424292;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+}
+.popupMainDiv {
+  max-height: 94vh;
+  width: 400px;
+  background-color: white;
+  border-radius: 30px;
+  border: solid 1px #00000029;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.userStory {
+  background-color: #0038ff;
+  border-radius: 8px;
+  padding: 4px 24px 4px 24px;
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.headLineCloseButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: white;
+
+  margin: 24px 26px 6px 28px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.headLineCloseButton svg:hover {
+  background-color: #e7e5e5;
+  border-radius: 50%;
+}
+
+.popupMainDiv:hover svg {
+  cursor: pointer;
+}
+
+.BoardOverlayHeadLinDivClass {
+  font-family: inter;
+  font-size: 42px;
+  font-weight: 700;
+  margin: 4px 28px 4px 28px;
+  word-break: break-word;
+}
+
+.SubTaskSpanClass {
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.container {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  text-align: left;
+}
+
+.deleteEditContactDivClass {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+
+  margin: 8px 28px 0px 28px;
+  padding: 0px 8px 24px 0px;
+}
+#deleteContactDivId:hover path {
+  fill: #2196f3;
+}
+#editContactDivId:hover path {
+  fill: #2196f3;
+}
+
+.dateDivClass {
+  margin-top: 22px;
+  margin-bottom: 16px;
+}
+
+.dateFormatSpan {
+  margin-left: 12px;
+}
+.priorityDivClass {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.priorityDivClass img {
+  margin-left: 10px;
+}
+
+.assignedToName1 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 24px;
+  margin-top: 16px;
+}
+
+#assignedLargeCardContainerId {
+  max-height: 140px;
+  overflow-y: auto;
+  margin: 8px 0px 0px 0px;
+}
+
+#subtasksLargeCardContainerId {
+  max-height: 102px;
+  overflow-y: auto;
+}
+
+#largeCardPrioSpanId {
+  display: flex;
+  align-items: center;
+}
+
+.subTasksDivClass {
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  margin: 6px 28px 6px 28px;
+}
+
+.subTaskSingleChildClass {
+  margin: 8px 0px 0px 0px;
+}
+
+.mainPopupDivClass {
+  margin: 8px 28px 8px 28px;
+}
+
+.circleAndNameSpanClass2 {
+  display: flex;
+  align-items: center;
+  margin: 8px 0px;
+}
+
+.contactSvgCircleClass2 {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #399b46;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progessBarAndTextClass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  margin: 12px 0px;
+}
+.progressBarParentDivClass {
+  width: 56%;
+  border: none;
+  border-radius: 10px;
+  margin: 0px 0px 0px 4px;
+  height: 8px;
+  background: #e0e0e0;
+}
+
+.innerProgressBarClass {
+  height: 100%;
+  background: #4589ff;
+  border-radius: 10px;
+}
+
+.rotateOnDrag {
+  transform: rotate(4deg);
+}
